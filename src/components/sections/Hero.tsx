@@ -28,7 +28,7 @@ export function Hero() {
         visible: {
             opacity: 1,
             y: 0,
-            transition: { duration: 0.8, ease: 'easeOut' },
+            transition: { duration: 0.8, ease: [0.33, 1, 0.68, 1] as const },
         },
     };
 
@@ -40,7 +40,7 @@ export function Hero() {
             transition: {
                 delay: i * 0.05,
                 duration: 0.5,
-                ease: 'easeOut',
+                ease: [0.33, 1, 0.68, 1] as const,
             },
         }),
     };
@@ -53,8 +53,16 @@ export function Hero() {
             <div className="absolute inset-0 z-0">
                 <Canvas
                     camera={{ position: [0, 0, 6], fov: 60 }}
-                    dpr={[1, 2]}
-                    gl={{ antialias: true, alpha: true }}
+                    dpr={[1, 1.5]}
+                    gl={{
+                        antialias: true,
+                        alpha: true,
+                        powerPreference: 'high-performance',
+                        stencil: false,
+                        depth: false
+                    }}
+                    frameloop="always"
+                    performance={{ min: 0.5 }}
                 >
                     <ambientLight intensity={0.3} />
                     <pointLight position={[10, 10, 10]} intensity={0.8} color="#00d4ff" />

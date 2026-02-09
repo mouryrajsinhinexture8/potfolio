@@ -45,6 +45,7 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
@@ -53,6 +54,17 @@ body {
   color: var(--text-primary);
   overflow-x: hidden;
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
+}
+
+/* GPU acceleration for smooth scrolling */
+main,
+section {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 /* Custom Scrollbar */
@@ -153,19 +165,22 @@ body {
   background-clip: text;
 }
 
-/* Glass Effect */
+/* Glass Effect - Optimized for performance */
 .glass {
   background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .glass-strong {
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   border: 1px solid rgba(255, 255, 255, 0.15);
+  transform: translateZ(0);
 }
 
 /* Glow Effects */
@@ -273,7 +288,7 @@ body {
 
 /* Text Sizes - Responsive */
 .text-hero {
-  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-size: clamp(2rem, 7vw, 5rem);
   font-weight: 700;
   line-height: 1.1;
 }

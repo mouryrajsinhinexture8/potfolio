@@ -68,7 +68,7 @@ export function About() {
         visible: {
             opacity: 1,
             y: 0,
-            transition: { duration: 0.6, ease: 'easeOut' },
+            transition: { duration: 0.6, ease: [0.33, 1, 0.68, 1] as const },
         },
     };
 
@@ -106,15 +106,12 @@ export function About() {
                             {/* Card */}
                             <div className="relative glass rounded-2xl p-2 transform group-hover:scale-[1.02] transition-transform duration-500">
                                 <div className="bg-gradient-to-br from-bg-secondary to-bg-primary rounded-xl overflow-hidden">
-                                    {/* Placeholder for photo */}
-                                    <div className="w-64 h-80 md:w-80 md:h-96 bg-gradient-to-br from-accent-cyan/20 to-accent-purple/20 flex items-center justify-center">
-                                        <div className="text-center">
-                                            <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-r from-accent-cyan to-accent-purple flex items-center justify-center mb-4">
-                                                <span className="text-4xl font-bold text-white">MJ</span>
-                                            </div>
-                                            <p className="text-gray-400 text-sm">Add profile.jpg to public/</p>
-                                        </div>
-                                    </div>
+                                    {/* Profile Photo */}
+                                    <img
+                                        src="/Hero img.jpeg"
+                                        alt="Mouryrajsinh Jadeja"
+                                        className="w-64 h-80 md:w-80 md:h-96 object-cover"
+                                    />
                                 </div>
                             </div>
 
@@ -161,7 +158,7 @@ export function About() {
                     className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
                     variants={containerVariants}
                 >
-                    {stats.map((stat, i) => (
+                    {stats.map((stat) => (
                         <motion.div
                             key={stat.label}
                             className="glass rounded-xl p-6 text-center group hover:scale-105 transition-transform duration-300"
@@ -192,12 +189,12 @@ export function About() {
                                     whileHover={{ scale: 1.02 }}
                                 >
                                     <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 ${i === 0 ? 'bg-accent-purple/20 glow-purple' :
-                                            i === 1 ? 'bg-accent-cyan/20 glow-cyan' :
-                                                'bg-accent-green/20 glow-green'
+                                        i === 1 ? 'bg-accent-cyan/20 glow-cyan' :
+                                            'bg-accent-green/20 glow-green'
                                         }`}>
                                         <Icon className={`w-7 h-7 ${i === 0 ? 'text-accent-purple' :
-                                                i === 1 ? 'text-accent-cyan' :
-                                                    'text-accent-green'
+                                            i === 1 ? 'text-accent-cyan' :
+                                                'text-accent-green'
                                             }`} />
                                     </div>
                                     <h4 className="text-xl font-semibold text-white mb-3">{service.title}</h4>
