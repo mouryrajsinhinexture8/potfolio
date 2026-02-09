@@ -38,7 +38,7 @@
 
 /* Base Styles */
 * {
-  margin: 0;
+  margin: 5px;
   padding: 0;
   box-sizing: border-box;
 }
@@ -288,7 +288,7 @@ section {
 
 /* Text Sizes - Responsive */
 .text-hero {
-  font-size: clamp(2rem, 7vw, 5rem);
+  font-size: clamp(1rem, 4vw, 4rem);
   font-weight: 700;
   line-height: 1.1;
 }

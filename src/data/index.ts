@@ -15,7 +15,7 @@ export const personalInfo = {
     bio: `I'm Mouryrajsinh Jadeja, an AI Developer and Full-Stack Engineer passionate about leveraging machine learning and natural language processing to build innovative, data-driven solutions. Currently pursuing M.Sc. in IT - Artificial Intelligence at Parul University, I specialize in creating scalable systems that solve complex real-world problems.
 
 With expertise spanning AI research, web development, and software engineering, I bridge the gap between cutting-edge AI technologies and practical applications. I thrive on collaborating with cross-functional teams to develop solutions that enhance user experiences and drive business value.`,
-    location: "Vadodara, Gujarat, India",
+    location: "Dhrafa 24C, Gujarat, India",
     email: "mouryrajjadeja@gmail.com",
     phone: "+91-8849317978",
     linkedin: "https://www.linkedin.com/in/jadeja-mouryrajsinh-b9250729b",
@@ -25,7 +25,7 @@ With expertise spanning AI research, web development, and software engineering, 
 
 // Stats
 export const stats = [
-    { label: "Years Experience", value: 2, suffix: "+" },
+    { label: "Years Experience", value: 1, suffix: "+" },
     { label: "Projects Completed", value: 10, suffix: "+" },
     { label: "Technologies", value: 15, suffix: "+" },
     { label: "Coffee Consumed", value: "∞", suffix: "" },

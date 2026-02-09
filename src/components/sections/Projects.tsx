@@ -66,7 +66,7 @@ function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                             <div className="grid lg:grid-cols-2 gap-8">
                                 {/* Image */}
                                 <div className="bg-gradient-to-br from-accent-cyan/20 to-accent-purple/20 rounded-xl aspect-video flex items-center justify-center">
-                                    <span className="text-gray-400">Project Screenshot</span>
+                                    <span className="text-gray-400">Project Screenshot</span> 
                                 </div>
 
                                 {/* Details */}
