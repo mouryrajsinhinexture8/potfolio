@@ -24,9 +24,9 @@ function SkillBar({ name, level, color, delay = 0 }: { name: string; level: numb
             <div className="h-2 bg-bg-primary rounded-full overflow-hidden">
                 <motion.div
                     className={`h-full rounded-full ${color === 'text-accent-purple' ? 'bg-gradient-to-r from-purple-600 to-purple-400' :
-                            color === 'text-accent-cyan' ? 'bg-gradient-to-r from-cyan-600 to-cyan-400' :
-                                color === 'text-accent-green' ? 'bg-gradient-to-r from-green-600 to-green-400' :
-                                    'bg-gradient-to-r from-orange-600 to-orange-400'
+                        color === 'text-accent-cyan' ? 'bg-gradient-to-r from-cyan-600 to-cyan-400' :
+                            color === 'text-accent-green' ? 'bg-gradient-to-r from-green-600 to-green-400' :
+                                'bg-gradient-to-r from-orange-600 to-orange-400'
                         }`}
                     initial={{ width: 0 }}
                     animate={{ width: `${width}%` }}
@@ -78,7 +78,7 @@ export function Skills() {
         visible: {
             opacity: 1,
             y: 0,
-            transition: { duration: 0.5, ease: 'easeOut' },
+            transition: { duration: 0.5, ease: [0.33, 1, 0.68, 1] as const },
         },
     };
 

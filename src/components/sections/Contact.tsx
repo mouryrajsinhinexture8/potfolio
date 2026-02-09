@@ -28,7 +28,7 @@ export function Contact() {
         formState: { errors },
     } = useForm<FormData>();
 
-    const onSubmit = async (data: FormData) => {
+    const onSubmit = async (_data: FormData) => {
         setIsSubmitting(true);
 
         // Simulate form submission (replace with EmailJS integration)
@@ -92,7 +92,7 @@ export function Contact() {
         visible: {
             opacity: 1,
             y: 0,
-            transition: { duration: 0.5, ease: 'easeOut' },
+            transition: { duration: 0.5, ease: [0.33, 1, 0.68, 1] as const },
         },
     };
 

@@ -121,9 +121,7 @@ export function NeuralNetwork({ mouseX = 0, mouseY = 0 }: NeuralNetworkProps) {
                 <bufferGeometry>
                     <bufferAttribute
                         attach="attributes-position"
-                        count={particlePositions.length / 3}
-                        array={particlePositions}
-                        itemSize={3}
+                        args={[particlePositions, 3]}
                     />
                 </bufferGeometry>
                 <pointsMaterial

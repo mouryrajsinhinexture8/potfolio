@@ -121,7 +121,7 @@ export function Experience() {
         visible: {
             opacity: 1,
             y: 0,
-            transition: { duration: 0.5, ease: 'easeOut' },
+            transition: { duration: 0.5, ease: [0.33, 1, 0.68, 1] as const },
         },
     };
 
@@ -136,8 +136,8 @@ export function Experience() {
             const match = str?.match(/\d{4}/g);
             return match ? Math.max(...match.map(Number)) : 0;
         };
-        const yearA = getYear(a.year || a.duration || '');
-        const yearB = getYear(b.year || b.duration || '');
+        const yearA = getYear('year' in a ? a.year : 'duration' in a ? a.duration : '');
+        const yearB = getYear('year' in b ? b.year : 'duration' in b ? b.duration : '');
         return yearB - yearA;
     });
 
