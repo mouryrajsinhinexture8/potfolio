@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
+import emailjs from '@emailjs/browser';
 import { Send, Mail, Phone, MapPin, Linkedin, Github, Copy, Check, Sparkles } from 'lucide-react';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import { personalInfo } from '../../data';
@@ -12,6 +13,10 @@ interface FormData {
     subject: string;
     message: string;
 }
+
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 export function Contact() {
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -28,15 +33,21 @@ export function Contact() {
         formState: { errors },
     } = useForm<FormData>();
 
-    const onSubmit = async (_data: FormData) => {
+    const onSubmit = async (data: FormData) => {
         setIsSubmitting(true);
 
-        // Simulate form submission (replace with EmailJS integration)
         try {
-            // TODO: Integrate with EmailJS
-            // await emailjs.send('service_id', 'template_id', data, 'public_key');
-
-            await new Promise((resolve) => setTimeout(resolve, 1500));
+            await emailjs.send(
+                EMAILJS_SERVICE_ID,
+                EMAILJS_TEMPLATE_ID,
+                {
+                    from_name: data.name,
+                    from_email: data.email,
+                    subject: data.subject || 'No Subject',
+                    message: data.message,
+                },
+                EMAILJS_PUBLIC_KEY,
+            );
 
             toast.success('Message sent successfully! I\'ll get back to you soon.', {
                 duration: 5000,
