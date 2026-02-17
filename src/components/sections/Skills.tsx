@@ -102,22 +102,22 @@ export function Skills() {
                 animate={isSectionVisible ? 'visible' : 'hidden'}
             >
                 {/* Section Title */}
-                <motion.div className="text-center mb-16" variants={itemVariants}>
+                <motion.div className="text-center mb-10 md:mb-16" variants={itemVariants}>
                     <h2 className="text-section-title font-display gradient-text mb-4">
                         Technical Arsenal
                     </h2>
-                    <p className="text-gray-400 max-w-2xl mx-auto">
+                    <p className="text-gray-400 max-w-2xl mx-auto text-sm md:text-base">
                         A comprehensive toolkit built through years of learning and practical application
                     </p>
                     <div className="w-24 h-1 bg-gradient-to-r from-accent-cyan to-accent-purple mx-auto mt-4 rounded-full" />
                 </motion.div>
 
                 {/* Skills Grid */}
-                <div className="grid md:grid-cols-2 gap-8 mb-16">
+                <div className="grid sm:grid-cols-2 gap-4 md:gap-8 mb-10 md:mb-16">
                     {skillCategories.map((category, categoryIndex) => (
                         <motion.div
                             key={category.key}
-                            className={`glass rounded-2xl p-6 md:p-8 bg-gradient-to-br ${category.bgColor}`}
+                            className={`glass rounded-2xl p-4 md:p-6 lg:p-8 bg-gradient-to-br ${category.bgColor}`}
                             variants={itemVariants}
                         >
                             <h3 className={`text-xl font-semibold ${category.color} mb-6 flex items-center gap-2`}>
@@ -140,11 +140,11 @@ export function Skills() {
                 </div>
 
                 {/* Tech Stack Icons */}
-                <motion.div className="mb-16" variants={itemVariants}>
+                <motion.div className="mb-10 md:mb-16" variants={itemVariants}>
                     <h3 className="text-xl font-semibold text-white text-center mb-8">
                         Technologies I Work With
                     </h3>
-                    <div className="flex flex-wrap justify-center gap-4">
+                    <div className="flex flex-wrap justify-center gap-2 md:gap-4">
                         {Object.entries(techIcons).map(([tech, icon], i) => (
                             <motion.div
                                 key={tech}

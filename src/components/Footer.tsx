@@ -14,9 +14,9 @@ export function Footer() {
 
                     {/* Copyright */}
                     <p className="text-gray-400 text-sm flex items-center gap-1">
-                        © {currentYear} Mouryrajsinh Jadeja. Made with
+                        © {currentYear} Mouryrajsinh Jadeja.
                         <Heart className="w-4 h-4 text-red-500 fill-red-500" />
-                        in India
+                        
                     </p>
 
                     {/* Quick Links */}

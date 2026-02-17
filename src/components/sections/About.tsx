@@ -85,7 +85,7 @@ export function About() {
                 animate={isSectionVisible ? 'visible' : 'hidden'}
             >
                 {/* Section Title */}
-                <motion.div className="text-center mb-16" variants={itemVariants}>
+                <motion.div className="text-center mb-10 md:mb-16" variants={itemVariants}>
                     <h2 className="text-section-title font-display gradient-text mb-4">
                         Who I Am
                     </h2>
@@ -93,7 +93,7 @@ export function About() {
                 </motion.div>
 
                 {/* Main Content */}
-                <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20">
+                <div className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-center mb-12 md:mb-20">
                     {/* Photo Card */}
                     <motion.div
                         className="relative group flex justify-center"
@@ -110,7 +110,7 @@ export function About() {
                                     <img
                                         src="/Hero img.jpeg"
                                         alt="Mouryrajsinh Jadeja"
-                                        className="w-64 h-80 md:w-80 md:h-96 object-cover"
+                                        className="w-56 h-72 sm:w-64 sm:h-80 md:w-80 md:h-96 object-cover mx-auto"
                                     />
                                 </div>
                             </div>
@@ -131,12 +131,12 @@ export function About() {
 
                     {/* Bio */}
                     <motion.div variants={itemVariants}>
-                        <h3 className="text-2xl md:text-3xl font-semibold text-white mb-6">
+                        <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold text-white mb-4 md:mb-6">
                             {personalInfo.firstName}{' '}
                             <span className="gradient-text">{personalInfo.lastName}</span>
                         </h3>
 
-                        <div className="space-y-4 text-gray-300 leading-relaxed">
+                        <div className="space-y-3 text-gray-300 leading-relaxed text-sm md:text-base">
                             {personalInfo.bio.split('\n\n').map((paragraph, i) => (
                                 <p key={i}>{paragraph}</p>
                             ))}
@@ -155,17 +155,17 @@ export function About() {
 
                 {/* Stats */}
                 <motion.div
-                    className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
+                    className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mb-12 md:mb-20"
                     variants={containerVariants}
                 >
                     {stats.map((stat) => (
                         <motion.div
                             key={stat.label}
-                            className="glass rounded-xl p-6 text-center group hover:scale-105 transition-transform duration-300"
+                            className="glass rounded-xl p-4 md:p-6 text-center group hover:scale-105 transition-transform duration-300"
                             variants={itemVariants}
                             whileHover={{ y: -5 }}
                         >
-                            <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">
+                            <div className="text-2xl md:text-4xl font-bold gradient-text mb-1 md:mb-2">
                                 <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                             </div>
                             <div className="text-gray-400 text-sm">{stat.label}</div>
@@ -174,17 +174,17 @@ export function About() {
                 </motion.div>
 
                 {/* What I Do */}
-                <motion.div className="mb-20" variants={itemVariants}>
-                    <h3 className="text-2xl font-semibold text-white text-center mb-10">
+                <motion.div className="mb-12 md:mb-20" variants={itemVariants}>
+                    <h3 className="text-xl md:text-2xl font-semibold text-white text-center mb-6 md:mb-10">
                         What I Do
                     </h3>
-                    <div className="grid md:grid-cols-3 gap-6">
+                    <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                         {services.map((service, i) => {
                             const Icon = iconMap[service.icon] || Brain;
                             return (
                                 <motion.div
                                     key={service.title}
-                                    className="glass rounded-xl p-8 group hover:bg-white/10 transition-all duration-300 card-3d"
+                                    className="glass rounded-xl p-5 md:p-8 group hover:bg-white/10 transition-all duration-300 card-3d"
                                     variants={itemVariants}
                                     whileHover={{ scale: 1.02 }}
                                 >
@@ -210,13 +210,13 @@ export function About() {
                     <h3 className="text-xl font-semibold text-white text-center mb-8">
                         When I'm Not Coding
                     </h3>
-                    <div className="flex flex-wrap justify-center gap-4">
+                    <div className="flex flex-wrap justify-center gap-2 md:gap-4">
                         {hobbies.map((hobby) => {
                             const Icon = iconMap[hobby.icon] || Activity;
                             return (
                                 <motion.div
                                     key={hobby.name}
-                                    className="glass rounded-full px-6 py-3 flex items-center gap-3 group hover:bg-accent-cyan/10 transition-colors duration-300"
+                                    className="glass rounded-full px-4 py-2 md:px-6 md:py-3 flex items-center gap-2 md:gap-3 group hover:bg-accent-cyan/10 transition-colors duration-300"
                                     whileHover={{ scale: 1.05, rotate: [-2, 2, 0] }}
                                 >
                                     <Icon className="w-5 h-5 text-accent-cyan group-hover:rotate-12 transition-transform" />

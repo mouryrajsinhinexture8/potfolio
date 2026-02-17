@@ -21,7 +21,7 @@ export function BackToTop() {
     return (
         <motion.button
             onClick={scrollToTop}
-            className={`fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-gradient-to-r from-accent-cyan to-accent-purple flex items-center justify-center shadow-lg hover:shadow-accent-cyan/30 transition-shadow touch-target ${isVisible ? 'pointer-events-auto' : 'pointer-events-none'
+            className={`fixed bottom-6 right-4 md:bottom-8 md:right-8 z-50 w-11 h-11 md:w-12 md:h-12 rounded-full bg-gradient-to-r from-accent-cyan to-accent-purple flex items-center justify-center shadow-lg hover:shadow-accent-cyan/30 transition-shadow touch-target ${isVisible ? 'pointer-events-auto' : 'pointer-events-none'
                 }`}
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: isVisible ? 1 : 0, scale: isVisible ? 1 : 0.5 }}

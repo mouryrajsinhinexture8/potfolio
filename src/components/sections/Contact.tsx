@@ -111,17 +111,17 @@ export function Contact() {
                 animate={isSectionVisible ? 'visible' : 'hidden'}
             >
                 {/* Section Title */}
-                <motion.div className="text-center mb-16" variants={itemVariants}>
+                <motion.div className="text-center mb-10 md:mb-16" variants={itemVariants}>
                     <h2 className="text-section-title font-display gradient-text mb-4">
                         Let's Connect
                     </h2>
-                    <p className="text-gray-400 max-w-2xl mx-auto">
+                    <p className="text-gray-400 max-w-2xl mx-auto text-sm md:text-base">
                         Have a project in mind? Let's make it happen!
                     </p>
                     <div className="w-24 h-1 bg-gradient-to-r from-accent-cyan to-accent-purple mx-auto mt-4 rounded-full" />
                 </motion.div>
 
-                <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
+                <div className="grid lg:grid-cols-2 gap-8 lg:gap-20">
                     {/* Contact Form */}
                     <motion.div variants={itemVariants}>
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -131,7 +131,7 @@ export function Contact() {
                                     {...register('name', { required: 'Name is required' })}
                                     type="text"
                                     placeholder="Your Name"
-                                    className="w-full px-4 py-4 bg-bg-secondary border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-accent-cyan focus:outline-none focus:ring-1 focus:ring-accent-cyan transition-all duration-300"
+                                    className="w-full px-4 py-3 md:py-4 bg-bg-secondary border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-accent-cyan focus:outline-none focus:ring-1 focus:ring-accent-cyan transition-all duration-300 text-sm md:text-base"
                                 />
                                 {errors.name && (
                                     <span className="text-red-400 text-sm mt-1 block">{errors.name.message}</span>
@@ -150,7 +150,7 @@ export function Contact() {
                                     })}
                                     type="email"
                                     placeholder="Your Email"
-                                    className="w-full px-4 py-4 bg-bg-secondary border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-accent-cyan focus:outline-none focus:ring-1 focus:ring-accent-cyan transition-all duration-300"
+                                    className="w-full px-4 py-3 md:py-4 bg-bg-secondary border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-accent-cyan focus:outline-none focus:ring-1 focus:ring-accent-cyan transition-all duration-300 text-sm md:text-base"
                                 />
                                 {errors.email && (
                                     <span className="text-red-400 text-sm mt-1 block">{errors.email.message}</span>
@@ -163,7 +163,7 @@ export function Contact() {
                                     {...register('subject')}
                                     type="text"
                                     placeholder="Subject (Optional)"
-                                    className="w-full px-4 py-4 bg-bg-secondary border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-accent-cyan focus:outline-none focus:ring-1 focus:ring-accent-cyan transition-all duration-300"
+                                    className="w-full px-4 py-3 md:py-4 bg-bg-secondary border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-accent-cyan focus:outline-none focus:ring-1 focus:ring-accent-cyan transition-all duration-300 text-sm md:text-base"
                                 />
                             </div>
 
@@ -173,7 +173,7 @@ export function Contact() {
                                     {...register('message', { required: 'Message is required' })}
                                     placeholder="Your Message"
                                     rows={5}
-                                    className="w-full px-4 py-4 bg-bg-secondary border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-accent-cyan focus:outline-none focus:ring-1 focus:ring-accent-cyan transition-all duration-300 resize-none"
+                                    className="w-full px-4 py-3 md:py-4 bg-bg-secondary border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-accent-cyan focus:outline-none focus:ring-1 focus:ring-accent-cyan transition-all duration-300 resize-none text-sm md:text-base"
                                 />
                                 {errors.message && (
                                     <span className="text-red-400 text-sm mt-1 block">{errors.message.message}</span>
@@ -230,7 +230,7 @@ export function Contact() {
                                     </div>
                                     <div>
                                         <p className="text-gray-400 text-sm">Email</p>
-                                        <p className="text-white font-medium">{personalInfo.email}</p>
+                                        <p className="text-white font-medium text-sm md:text-base break-all">{personalInfo.email}</p>
                                     </div>
                                 </div>
                                 <button className="p-2 rounded-full hover:bg-white/10 transition-colors touch-target">

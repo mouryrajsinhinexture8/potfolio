@@ -120,7 +120,7 @@ export function Hero() {
 
                     {/* Typewriter Tagline */}
                     <motion.div
-                        className="text-subtitle text-gray-300 mb-6 h-8"
+                        className="text-subtitle text-gray-300 mb-4 md:mb-6 h-8"
                         variants={itemVariants}
                     >
                         <TypeAnimation
@@ -142,7 +142,7 @@ export function Hero() {
 
                     {/* Headline */}
                     <motion.p
-                        className="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl mx-auto"
+                        className="text-base md:text-xl text-gray-400 mb-6 md:mb-8 max-w-2xl mx-auto"
                         variants={itemVariants}
                     >
                         {personalInfo.headline}
@@ -150,7 +150,7 @@ export function Hero() {
 
                     {/* CTA Buttons */}
                     <motion.div
-                        className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
+                        className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center mb-8 md:mb-12"
                         variants={itemVariants}
                     >
                         <a href="#projects" className="btn-primary group touch-target">
@@ -178,7 +178,7 @@ export function Hero() {
                             href={personalInfo.linkedin}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-3 rounded-full glass hover:glow-cyan transition-all duration-300 hover:scale-110 touch-target"
+                            className="p-3 rounded-full glass hover:glow-cyan transition-all duration-300 hover:scale-110 touch-target flex items-center justify-center"
                             aria-label="LinkedIn Profile"
                         >
                             <Linkedin className="w-5 h-5 text-accent-cyan" />
@@ -187,14 +187,14 @@ export function Hero() {
                             href={personalInfo.github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-3 rounded-full glass hover:glow-purple transition-all duration-300 hover:scale-110 touch-target"
+                            className="p-3 rounded-full glass hover:glow-purple transition-all duration-300 hover:scale-110 touch-target flex items-center justify-center"
                             aria-label="GitHub Profile"
                         >
                             <Github className="w-5 h-5 text-accent-purple" />
                         </a>
                         <a
                             href={`mailto:${personalInfo.email}`}
-                            className="p-3 rounded-full glass hover:glow-green transition-all duration-300 hover:scale-110 touch-target"
+                            className="p-3 rounded-full glass hover:glow-green transition-all duration-300 hover:scale-110 touch-target flex items-center justify-center"
                             aria-label="Email Me"
                         >
                             <Mail className="w-5 h-5 text-accent-green" />
@@ -205,7 +205,7 @@ export function Hero() {
 
             {/* Scroll Indicator */}
             <motion.div
-                className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
+                className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.5, duration: 0.5 }}

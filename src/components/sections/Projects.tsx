@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, X, ChevronRight } from 'lucide-react';
+import { ExternalLink, Github, X, ChevronRight, ShoppingCart, Database, Globe, Code2 } from 'lucide-react';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import { projects } from '../../data';
 
@@ -18,6 +18,25 @@ interface Project {
     featured: boolean;
 }
 
+// Project-specific visual config
+const projectVisuals: Record<number, { icon: typeof ShoppingCart; gradient: string; pattern: string }> = {
+    1: {
+        icon: ShoppingCart,
+        gradient: 'from-cyan-500/30 via-blue-500/20 to-purple-500/30',
+        pattern: 'radial-gradient(circle at 20% 50%, rgba(0,212,255,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(168,85,247,0.15) 0%, transparent 50%)',
+    },
+    2: {
+        icon: Database,
+        gradient: 'from-purple-500/30 via-pink-500/20 to-orange-500/30',
+        pattern: 'radial-gradient(circle at 30% 30%, rgba(168,85,247,0.15) 0%, transparent 50%), radial-gradient(circle at 70% 70%, rgba(251,146,60,0.15) 0%, transparent 50%)',
+    },
+    3: {
+        icon: Globe,
+        gradient: 'from-emerald-500/30 via-teal-500/20 to-cyan-500/30',
+        pattern: 'radial-gradient(circle at 40% 60%, rgba(16,185,129,0.15) 0%, transparent 50%), radial-gradient(circle at 60% 40%, rgba(0,212,255,0.15) 0%, transparent 50%)',
+    },
+};
+
 interface ProjectModalProps {
     project: Project;
     isOpen: boolean;
@@ -25,6 +44,11 @@ interface ProjectModalProps {
 }
 
 function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
+    if (!project) return null;
+
+    const visual = projectVisuals[project.id] || projectVisuals[1];
+    const VisualIcon = visual.icon;
+
     return (
         <AnimatePresence>
             {isOpen && (
@@ -40,7 +64,7 @@ function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
 
                     {/* Modal */}
                     <motion.div
-                        className="fixed inset-4 md:inset-10 lg:inset-20 bg-bg-secondary rounded-2xl z-50 overflow-hidden flex flex-col"
+                        className="fixed inset-2 sm:inset-4 md:inset-10 lg:inset-20 bg-bg-secondary rounded-2xl z-50 overflow-hidden flex flex-col"
                         initial={{ opacity: 0, scale: 0.9, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -48,13 +72,13 @@ function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                     >
                         {/* Header */}
                         <div className="flex items-center justify-between p-4 md:p-6 border-b border-white/10">
-                            <div>
-                                <h3 className="text-xl md:text-2xl font-bold text-white">{project.title}</h3>
-                                <p className="text-accent-cyan">{project.subtitle}</p>
+                            <div className="min-w-0 flex-1">
+                                <h3 className="text-lg md:text-2xl font-bold text-white truncate">{project.title}</h3>
+                                <p className="text-accent-cyan text-sm md:text-base">{project.subtitle}</p>
                             </div>
                             <button
                                 onClick={onClose}
-                                className="p-2 rounded-full hover:bg-white/10 transition-colors touch-target"
+                                className="p-2 rounded-full hover:bg-white/10 transition-colors touch-target flex-shrink-0 ml-2"
                                 aria-label="Close modal"
                             >
                                 <X className="w-6 h-6 text-gray-400" />
@@ -63,10 +87,16 @@ function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
 
                         {/* Content */}
                         <div className="flex-1 overflow-y-auto p-4 md:p-6">
-                            <div className="grid lg:grid-cols-2 gap-8">
-                                {/* Image */}
-                                <div className="bg-gradient-to-br from-accent-cyan/20 to-accent-purple/20 rounded-xl aspect-video flex items-center justify-center">
-                                    <span className="text-gray-400">Project Screenshot</span> 
+                            <div className="grid lg:grid-cols-2 gap-6 md:gap-8">
+                                {/* Image Area */}
+                                <div
+                                    className={`bg-gradient-to-br ${visual.gradient} rounded-xl aspect-video flex items-center justify-center relative overflow-hidden`}
+                                    style={{ backgroundImage: visual.pattern }}
+                                >
+                                    <div className="flex flex-col items-center gap-3 opacity-60">
+                                        <VisualIcon className="w-12 h-12 text-white/60" />
+                                        <span className="text-white/40 text-sm font-medium">{project.title}</span>
+                                    </div>
                                 </div>
 
                                 {/* Details */}
@@ -90,37 +120,41 @@ function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                                         </div>
                                     </div>
 
-                                    <div className="flex gap-4">
-                                        <a
-                                            href={project.liveUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="btn-primary text-sm"
-                                        >
-                                            <span className="flex items-center gap-2">
-                                                <ExternalLink className="w-4 h-4" />
-                                                Live Demo
-                                            </span>
-                                        </a>
-                                        <a
-                                            href={project.githubUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="btn-secondary text-sm"
-                                        >
-                                            <span className="flex items-center gap-2">
-                                                <Github className="w-4 h-4" />
-                                                Source Code
-                                            </span>
-                                        </a>
+                                    <div className="flex gap-3 flex-wrap">
+                                        {project.liveUrl !== '#' && (
+                                            <a
+                                                href={project.liveUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="btn-primary text-sm"
+                                            >
+                                                <span className="flex items-center gap-2">
+                                                    <ExternalLink className="w-4 h-4" />
+                                                    Live Demo
+                                                </span>
+                                            </a>
+                                        )}
+                                        {project.githubUrl !== '#' && (
+                                            <a
+                                                href={project.githubUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="btn-secondary text-sm"
+                                            >
+                                                <span className="flex items-center gap-2">
+                                                    <Github className="w-4 h-4" />
+                                                    Source Code
+                                                </span>
+                                            </a>
+                                        )}
                                     </div>
                                 </div>
                             </div>
 
                             {/* Full Description */}
-                            <div className="mt-8">
+                            <div className="mt-6 md:mt-8">
                                 <h4 className="text-lg font-semibold text-white mb-4">About This Project</h4>
-                                <div className="text-gray-400 whitespace-pre-line leading-relaxed">
+                                <div className="text-gray-400 whitespace-pre-line leading-relaxed text-sm md:text-base">
                                     {project.fullDescription}
                                 </div>
                             </div>
@@ -141,6 +175,8 @@ interface ProjectCardProps {
 
 function ProjectCard({ project, index, onClick, isVisible }: ProjectCardProps) {
     const [isHovered, setIsHovered] = useState(false);
+    const visual = projectVisuals[project.id] || projectVisuals[1];
+    const VisualIcon = visual.icon;
 
     return (
         <motion.div
@@ -156,10 +192,16 @@ function ProjectCard({ project, index, onClick, isVisible }: ProjectCardProps) {
                 transformStyle: 'preserve-3d',
             }}
         >
-            {/* Image */}
-            <div className="relative h-48 md:h-56 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-accent-cyan/20 to-accent-purple/20 flex items-center justify-center">
-                    <span className="text-gray-500 text-sm">Screenshot Placeholder</span>
+            {/* Image Area with Visual Placeholder */}
+            <div className="relative h-44 md:h-52 overflow-hidden">
+                <div
+                    className={`absolute inset-0 bg-gradient-to-br ${visual.gradient} flex items-center justify-center`}
+                    style={{ backgroundImage: visual.pattern }}
+                >
+                    <div className="flex flex-col items-center gap-2 opacity-50 group-hover:opacity-70 transition-opacity duration-300">
+                        <VisualIcon className="w-10 h-10 text-white/60" />
+                        <Code2 className="w-5 h-5 text-white/40" />
+                    </div>
                 </div>
 
                 {/* Overlay on hover */}
@@ -175,33 +217,33 @@ function ProjectCard({ project, index, onClick, isVisible }: ProjectCardProps) {
             </div>
 
             {/* Content */}
-            <div className="p-6">
+            <div className="p-5 md:p-6">
                 {/* Duration */}
-                <span className="text-accent-cyan text-sm mb-2 block">{project.duration}</span>
+                <span className="text-accent-cyan text-xs md:text-sm mb-2 block">{project.duration}</span>
 
                 {/* Title */}
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:gradient-text transition-all duration-300">
+                <h3 className="text-lg md:text-xl font-bold text-white mb-1 group-hover:gradient-text transition-all duration-300">
                     {project.title}
                 </h3>
 
                 {/* Subtitle */}
-                <p className="text-gray-400 text-sm mb-4">{project.subtitle}</p>
+                <p className="text-gray-400 text-sm mb-3">{project.subtitle}</p>
 
                 {/* Description */}
                 <p className="text-gray-500 text-sm mb-4 line-clamp-2">{project.description}</p>
 
                 {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="flex flex-wrap gap-1.5 mb-4">
                     {project.tech.slice(0, 3).map((tech) => (
                         <span
                             key={tech}
-                            className="px-2 py-1 text-xs rounded-full bg-bg-primary text-gray-400"
+                            className="px-2 py-0.5 text-xs rounded-full bg-bg-primary text-gray-400"
                         >
                             {tech}
                         </span>
                     ))}
                     {project.tech.length > 3 && (
-                        <span className="px-2 py-1 text-xs rounded-full bg-bg-primary text-gray-400">
+                        <span className="px-2 py-0.5 text-xs rounded-full bg-bg-primary text-gray-400">
                             +{project.tech.length - 3}
                         </span>
                     )}
@@ -245,18 +287,18 @@ export function Projects() {
                 animate={isSectionVisible ? 'visible' : 'hidden'}
             >
                 {/* Section Title */}
-                <motion.div className="text-center mb-16" variants={itemVariants}>
+                <motion.div className="text-center mb-12 md:mb-16" variants={itemVariants}>
                     <h2 className="text-section-title font-display gradient-text mb-4">
                         Featured Projects
                     </h2>
-                    <p className="text-gray-400 max-w-2xl mx-auto">
+                    <p className="text-gray-400 max-w-2xl mx-auto text-sm md:text-base">
                         Crafting Solutions, One Line of Code at a Time
                     </p>
                     <div className="w-24 h-1 bg-gradient-to-r from-accent-cyan to-accent-purple mx-auto mt-4 rounded-full" />
                 </motion.div>
 
                 {/* Projects Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                     {projects.map((project, index) => (
                         <ProjectCard
                             key={project.id}

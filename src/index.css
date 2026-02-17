@@ -38,7 +38,7 @@
 
 /* Base Styles */
 * {
-  margin: 5px;
+  /* margin: 0; */
   padding: 0;
   box-sizing: border-box;
 }
@@ -263,8 +263,14 @@ section {
 /* Section styles */
 .section {
   min-height: 100vh;
-  padding: 5rem 1.5rem;
+  padding: 4rem 1rem;
   position: relative;
+}
+
+@media (min-width: 480px) {
+  .section {
+    padding: 4rem 1.5rem;
+  }
 }
 
 @media (min-width: 768px) {
@@ -288,19 +294,20 @@ section {
 
 /* Text Sizes - Responsive */
 .text-hero {
-  font-size: clamp(1rem, 4vw, 4rem);
+  font-size: clamp(1.5rem, 5vw, 4rem);
   font-weight: 700;
   line-height: 1.1;
+  letter-spacing: 0.05em;
 }
 
 .text-section-title {
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(1.75rem, 5vw, 3.5rem);
   font-weight: 700;
   line-height: 1.2;
 }
 
 .text-subtitle {
-  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-size: clamp(0.95rem, 2vw, 1.5rem);
   font-weight: 400;
   line-height: 1.6;
 }
