@@ -20,7 +20,7 @@ With expertise spanning AI research, web development, and software engineering, 
     phone: "+91-8849317978",
     linkedin: "https://www.linkedin.com/in/jadeja-mouryrajsinh-b9250729b",
     github: "#", // Add your GitHub URL
-    resumeUrl: "/resume.pdf",
+    resumeUrl: "src/data/JADEJA MOURYRAJSINH'S RESUMEe.pdf",
 };
 
 // Stats
